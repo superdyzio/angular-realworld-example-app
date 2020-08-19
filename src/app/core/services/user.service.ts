@@ -16,6 +16,8 @@ export class UserService {
   private isAuthenticatedSubject = new ReplaySubject<boolean>(1);
   public isAuthenticated = this.isAuthenticatedSubject.asObservable();
 
+  private defaultAvatar = 'https://static.productionready.io/images/smiley-cyrus.jpg';
+
   constructor (
     private apiService: ApiService,
     private http: HttpClient,
@@ -81,5 +83,10 @@ export class UserService {
       return data.user;
     }));
   }
+
+  getDefaultAvatar(): string {
+    return this.defaultAvatar;
+  }
+
 
 }

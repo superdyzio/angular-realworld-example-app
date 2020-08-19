@@ -7,9 +7,13 @@ import { User, UserService } from '../../core';
   templateUrl: './header.component.html'
 })
 export class HeaderComponent implements OnInit {
+  defaultAvatar;
+
   constructor(
     private userService: UserService
-  ) {}
+  ) {
+    this.defaultAvatar = userService.getDefaultAvatar();
+  }
 
   currentUser: User;
 
