@@ -24,6 +24,7 @@ export class ArticleComponent implements OnInit {
   commentFormErrors = {};
   isSubmitting = false;
   isDeleting = false;
+  defaultAvatar;
 
   constructor(
     private route: ActivatedRoute,
@@ -31,7 +32,9 @@ export class ArticleComponent implements OnInit {
     private commentsService: CommentsService,
     private router: Router,
     private userService: UserService,
-  ) { }
+  ) {
+    this.defaultAvatar = userService.getDefaultAvatar();
+  }
 
   ngOnInit() {
     // Retreive the prefetched article
