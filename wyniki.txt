@@ -1,0 +1,6 @@
+4x4 testy
+
+1. 48.51s
+2. 66.29s - count: 3
+3. 91.67s - shardTestFiles
+4. 49.84s - maxInstances: 3
