@@ -1,7 +1,6 @@
 import {browser, by, element} from 'protractor';
+import {LOGIN_URL, REGISTER_URL} from './constants';
 
-const loginPath = '/login';
-const registerPath = '/register';
 const usernameInput = 'input[formcontrolname="username"]';
 const emailInput = 'input[formcontrolname="email"]';
 const passwordInput = 'input[formcontrolname="password"]';
@@ -9,11 +8,11 @@ const submitButton = 'button[type="submit"]';
 
 export class AuthPage {
   navigateToLogin() {
-    return browser.get(loginPath);
+    return browser.get(LOGIN_URL);
   }
 
   navigateToRegister() {
-    return browser.get(registerPath);
+    return browser.get(REGISTER_URL);
   }
 
   getUsernameInput() {
