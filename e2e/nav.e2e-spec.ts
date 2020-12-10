@@ -10,6 +10,7 @@ import {
   LOGIN_URL,
   PASSWORDS,
   REGISTER_URL,
+  SETTINGS_URL,
   USERNAMES
 } from './constants';
 import {AuthPage} from './auth.po';
@@ -40,7 +41,10 @@ describe('navigation', () => {
   });
 
   it('logged in user should be able to navigate to login and register pages', async () => {
-    await authPage.loginWith(`${EMAILS.Morty}${EMAIL_DOMAIN}`, PASSWORDS.Morty);
+    await nav.getLoginNavItem().click();
+    await authPage.getEmailInput().sendKeys(`${EMAILS.Morty}${EMAIL_DOMAIN}`);
+    await authPage.getPasswordInput().sendKeys(PASSWORDS.Morty);
+    await authPage.getSubmitButton().click();
     expect(await browser.getCurrentUrl()).toEqual(`${config.baseUrl}${DEFAULT_URL}`);
 
     await nav.getEditorNavItem().click();
@@ -52,6 +56,8 @@ describe('navigation', () => {
     await nav.getHomeNavItem().click();
     expect(await browser.getCurrentUrl()).toEqual(`${config.baseUrl}${HOME_URL}`);
 
+    await nav.getSettingsNavItem().click();
+    expect(await browser.getCurrentUrl()).toEqual(`${config.baseUrl}${SETTINGS_URL}`);
     await settingsPage.logout();
   });
 });

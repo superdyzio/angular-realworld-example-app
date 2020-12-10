@@ -23,3 +23,12 @@ export const SETTINGS_URL = '/settings';
 export const EDITOR_URL = '/editor';
 const PROFILE_URL = '/profile/:username';
 export const buildProfileUrl = username => PROFILE_URL.replace(':username', username.toLowerCase());
+
+export const SCIENCE_TAG_ARTICLES_COUNT = 2;
+export const INITIAL_TOTAL_ARTICLES_COUNT = 5;
+
+export const NEW_ARTICLE_TITLE = 'Very nice article';
+export const NEW_ARTICLE_DESCRIPTION = 'Another science article from Morty';
+export const NEW_ARTICLE_BODY = 'Lorem ipsum dolor sit amet '.repeat(5);
+export const NEW_ARTICLE_TAG = 'science';
+export const NEW_ARTICLE_COMMENT = 'This is the best article ever!';
