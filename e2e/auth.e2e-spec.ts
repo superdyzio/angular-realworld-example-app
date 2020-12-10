@@ -15,27 +15,23 @@ describe('Auth scenarios', () => {
 
   afterEach(async () => {
     settingsPage = new SettingsPage();
-    await settingsPage.navigateTo();
-    await settingsPage.getLogoutButton().click();
+    await settingsPage.logout();
   });
 
   it('user should be able to sign up', async () => {
     const timestamp = new Date().getTime();
 
-    await page.navigateToRegister();
-    await page.getUsernameInput().sendKeys(`${USERNAMES.Jerry}${timestamp}`);
-    await page.getEmailInput().sendKeys(`${EMAILS.Jerry}${timestamp}${EMAIL_DOMAIN}`);
-    await page.getPasswordInput().sendKeys(PASSWORDS.Jerry);
-    await page.getSubmitButton().click();
+    await page.registerWith(
+      `${USERNAMES.Jerry}${timestamp}`,
+      `${EMAILS.Jerry}${timestamp}${EMAIL_DOMAIN}`,
+      PASSWORDS.Jerry
+    );
 
     expect(await browser.getCurrentUrl()).toEqual(`${config.baseUrl}${DEFAULT_URL}`);
   });
 
   it('user should be able to sign in', async () => {
-    await page.navigateToLogin();
-    await page.getEmailInput().sendKeys(`${EMAILS.Rick}${EMAIL_DOMAIN}`);
-    await page.getPasswordInput().sendKeys(PASSWORDS.Rick);
-    await page.getSubmitButton().click();
+    await page.loginWith(`${EMAILS.Rick}${EMAIL_DOMAIN}`, PASSWORDS.Rick);
 
     expect(await browser.getCurrentUrl()).toEqual(`${config.baseUrl}${DEFAULT_URL}`);
   });

@@ -11,4 +11,9 @@ export class SettingsPage {
   getLogoutButton() {
     return element(by.css(logoutButton));
   }
+
+  async logout() {
+    await this.navigateTo();
+    await this.getLogoutButton().click();
+  }
 }

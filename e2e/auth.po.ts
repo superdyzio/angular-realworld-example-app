@@ -30,4 +30,19 @@ export class AuthPage {
   getSubmitButton() {
     return element(by.css(submitButton));
   }
+
+  async registerWith(username, email, password) {
+    await this.navigateToRegister();
+    await this.getUsernameInput().sendKeys(username);
+    await this.getEmailInput().sendKeys(email);
+    await this.getPasswordInput().sendKeys(password);
+    await this.getSubmitButton().click();
+  }
+
+  async loginWith(email, password) {
+    await this.navigateToLogin();
+    await this.getEmailInput().sendKeys(email);
+    await this.getPasswordInput().sendKeys(password);
+    await this.getSubmitButton().click();
+  }
 }

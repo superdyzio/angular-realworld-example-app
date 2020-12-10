@@ -13,15 +13,18 @@ import {
   USERNAMES
 } from './constants';
 import {AuthPage} from './auth.po';
+import {SettingsPage} from './settings.po';
 
 describe('navigation', () => {
   let nav: NavContainer;
   let authPage: AuthPage;
+  let settingsPage: SettingsPage;
   let config;
 
   beforeEach(async () => {
     nav = new NavContainer();
     authPage = new AuthPage();
+    settingsPage = new SettingsPage();
     config = await browser.getProcessedConfig();
   });
 
@@ -37,10 +40,7 @@ describe('navigation', () => {
   });
 
   it('logged in user should be able to navigate to login and register pages', async () => {
-    await nav.getLoginNavItem().click();
-    await authPage.getEmailInput().sendKeys(`${EMAILS.Morty}${EMAIL_DOMAIN}`);
-    await authPage.getPasswordInput().sendKeys(PASSWORDS.Morty);
-    await authPage.getSubmitButton().click();
+    await authPage.loginWith(`${EMAILS.Morty}${EMAIL_DOMAIN}`, PASSWORDS.Morty);
     expect(await browser.getCurrentUrl()).toEqual(`${config.baseUrl}${DEFAULT_URL}`);
 
     await nav.getEditorNavItem().click();
@@ -51,5 +51,7 @@ describe('navigation', () => {
 
     await nav.getHomeNavItem().click();
     expect(await browser.getCurrentUrl()).toEqual(`${config.baseUrl}${HOME_URL}`);
+
+    await settingsPage.logout();
   });
 });
