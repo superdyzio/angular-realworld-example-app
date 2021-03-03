@@ -102,7 +102,8 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "./protractor.conf.js",
-            "devServerTarget": "ang2-conduit:serve"
+            "devServerTarget": "ang2-conduit:serve",
+            "port": 4201
           }
         },
         "lint": {

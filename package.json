@@ -8,7 +8,10 @@
     "build": "ng build --prod  --base-href ./ && cp CNAME dist/CNAME",
     "test": "ng test",
     "lint": "ng lint --force",
-    "e2e": "ng e2e --port 4201"
+    "db:drop": "mongo conduit --eval \"db.dropDatabase()\"",
+    "db:seed": "mongorestore --nsFrom=conduit.* --nsTo=conduit.* ../db-initial-data/",
+    "e2e": "ng e2e",
+    "e2e:fresh-db": "npm run db:drop && npm run db:seed && npm run e2e"
   },
   "pre-commit": [
     "lint"
