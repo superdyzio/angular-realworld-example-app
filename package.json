@@ -11,7 +11,8 @@
     "db:drop": "mongo conduit --eval \"db.dropDatabase()\"",
     "db:seed": "mongorestore --nsFrom=conduit.* --nsTo=conduit.* ../db-initial-data/",
     "e2e": "ng e2e",
-    "e2e:fresh-db": "npm run db:drop && npm run db:seed && npm run e2e"
+    "e2e:fresh-db": "npm run db:drop && npm run db:seed && npm run e2e",
+    "cucumber": "cucumber-js cucumber --publish-quiet"
   },
   "pre-commit": [
     "lint"
@@ -37,6 +38,7 @@
     "@angular/cli": "^7.3.1",
     "@angular/compiler-cli": "7.2.4",
     "@angular/language-service": "7.2.4",
+    "@cucumber/cucumber": "^7.0.0",
     "@types/jasmine": "~2.5.53",
     "@types/jasminewd2": "~2.0.2",
     "@types/node": "^9.4.0",
@@ -51,6 +53,7 @@
     "karma-jasmine-html-reporter": "^0.2.2",
     "pre-commit": "^1.2.2",
     "protractor": "^7.0.0",
+    "protractor-cucumber-framework": "^8.0.0",
     "ts-node": "~4.1.0",
     "tslint": "~5.9.1",
     "typescript": "3.2.4"
